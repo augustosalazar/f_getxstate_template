@@ -7,7 +7,8 @@ class W3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.yellowAccent,
-      child: Column(
+      child: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('Value'),
         ],

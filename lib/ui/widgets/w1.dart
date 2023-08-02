@@ -7,7 +7,8 @@ class W1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.amber,
-      child: Column(
+      child: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('Value'),
           ElevatedButton(onPressed: null, child: Text('Increment'))
