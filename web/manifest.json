@@ -1,6 +1,6 @@
 {
-    "name": "f_getxstate_demo",
-    "short_name": "f_getxstate_demo",
+    "name": "f_getxstate_template",
+    "short_name": "f_getxstate_template",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
