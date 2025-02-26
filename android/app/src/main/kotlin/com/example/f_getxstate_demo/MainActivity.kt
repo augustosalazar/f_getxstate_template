@@ -1,4 +1,4 @@
-package com.example.f_getxstate_template
+package com.example.f_getxstate_demo
 
 import io.flutter.embedding.android.FlutterActivity
 

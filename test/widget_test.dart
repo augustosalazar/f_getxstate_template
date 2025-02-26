@@ -11,20 +11,98 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:f_getxstate_demo/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Reset-Increment-Reset test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    await tester.tap(find.byKey(Key('resetButton')));
+    await tester.pump();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    expect(find.text('0'), findsNWidgets(3));
+
+    await tester.tap(find.byKey(Key('incrementButton')));
     await tester.pump();
 
     // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('1'), findsNWidgets(3));
+
+    await tester.tap(find.byKey(Key('resetButton')));
+    await tester.pump();
+
+    expect(find.text('0'), findsNWidgets(3));
+  });
+
+  testWidgets('Reset-I-I-I-I-D-Reset test', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MyApp());
+
+    await tester.tap(find.byKey(Key('resetButton')));
+    await tester.pump();
+
+    expect(find.text('0'), findsNWidgets(3));
+
+    await tester.tap(find.byKey(Key('incrementButton')));
+    await tester.pump();
+
+    await tester.tap(find.byKey(Key('incrementButton')));
+    await tester.pump();
+
+    await tester.tap(find.byKey(Key('incrementButton')));
+    await tester.pump();
+
+    await tester.tap(find.byKey(Key('incrementButton')));
+    await tester.pump();
+
+    // Verify that our counter has incremented.
+    expect(find.text('4'), findsNWidgets(3));
+
+    await tester.tap(find.byKey(Key('decrementButton')));
+    await tester.pump();
+
+    expect(find.text('3'), findsNWidgets(3));
+
+    await tester.tap(find.byKey(Key('resetButton')));
+    await tester.pump();
+
+    expect(find.text('0'), findsNWidgets(3));
+  });
+
+  testWidgets('Reset-I-I-I-Nav-I-Back-Reset test', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MyApp());
+
+    await tester.tap(find.byKey(Key('resetButton')));
+    await tester.pump();
+
+    expect(find.text('0'), findsNWidgets(3));
+
+    await tester.tap(find.byKey(Key('incrementButton')));
+    await tester.pump();
+
+    await tester.tap(find.byKey(Key('incrementButton')));
+    await tester.pump();
+
+    await tester.tap(find.byKey(Key('incrementButton')));
+    await tester.pump();
+
+    await tester.tap(find.byKey(Key('page2Button')));
+    await tester.pumpAndSettle();
+
+    expect(find.text('3'), findsNWidgets(1));
+
+    await tester.tap(find.byKey(Key('incrementButtonPage2')));
+    await tester.pump();
+
+    expect(find.text('4'), findsNWidgets(1));
+
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('4'), findsNWidgets(3));
+
+    await tester.tap(find.byKey(Key('resetButton')));
+    await tester.pump();
+
+    expect(find.text('0'), findsNWidgets(3));
   });
 }

@@ -8,14 +8,17 @@ class Page2 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Page 2'),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Value'),
-            ElevatedButton(onPressed: null, child: Text('Increment'))
+            ElevatedButton(
+                key: const Key('incrementButtonPage2'),
+                onPressed: null,
+                child: Text('Increment'))
           ],
         ),
       ),
